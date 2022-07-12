@@ -1,0 +1,83 @@
+<br>
+<br>
+
+<div class="container">
+  <div>
+    <h1>Restaurante ジョセフ </h1>
+  </div>
+
+  <h2>Listado de platillos</h2>
+  <p>Por favor introduzca los datos solicitados de los platillos que desea agregar a la lista</p>
+</div>
+
+<br><br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
+      <form class="forms-sample" [formGroup]="formGroupReservas">
+
+        <div class="mb-3">
+          <label class="form-label">Nombre del platillo</label><input type="text" class="form-control"
+            formControlName="nombre" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Peso</label><input type="number" class="form-control" formControlName="peso" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Numero de ingredientes</label><input type="number" class="form-control"
+            formControlName="numing" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Calorias</label><input type="number" class="form-control"
+            formControlName="calorias" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Precio</label><input type="number" class="form-control" formControlName="precio" />
+        </div>
+        <button [disabled]="!formGroupReservas.valid" type="button" (click)="guardarData(formGroupReservas.value)"
+          class="btn btn-primary">
+          {{textoBoton}}</button>
+
+      </form>
+      <br>
+
+
+    </div>
+
+    <div class="container col-xl-6 col-lg-6 col-md-5 col-sm-12 col-12 text-center">
+      <nav class="buscador">
+        <form class="form-inline" [formGroup]="formGroupReservas">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+            formControlName="filter">
+        </form>
+      </nav>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre del platillo</th>
+            <th>Peso</th>
+            <th>Numero de ingredientes</th>
+            <th>calorias</th>
+            <th>precio</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataFormulario">
+            <td>{{item?.nombre}}</td>
+            <td>{{item?.peso}}</td>
+            <td>{{item?.numing}}</td>
+            <td>{{item?.calorias}}</td>
+            <td>{{item?.precio}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="editar(item.id)">Editar</button>
+              <button type="button" class="btn btn-danger" (click)="eliminar(item.id)">Eliminar</button>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
